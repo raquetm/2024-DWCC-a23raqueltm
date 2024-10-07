@@ -47,3 +47,49 @@ for (let i = 1; i <= numero; i++) {
 //      b. Calcula o IMC das dúas persoas.
 //      c. Indica que persoa ten o maior IMC cunha cadea similar a: 'O IMC (25.3) da
 //      primeira persoa é maior que o da segunda persoa (22.5)!'
+let peso1 = 67;
+let altura1 = 1.8;
+let peso2 = 75;
+let altura2 = 1.8;
+
+let imc1 = peso1 / altura1 ** 2;
+let imc2 = peso2 / altura2 ** 2;
+
+if (imc1 > imc2) {
+  console.log(
+    'O IMC (' +
+      imc1 +
+      ') da primeira persoa é maior que o da segunda persoa (' +
+      imc2 +
+      ')!'
+  );
+} else if (imc2 > imc1) {
+  console.log(
+    'O IMC (' +
+      imc2 +
+      ') da segunda persoa é maior que o da primeira persoa (' +
+      imc1 +
+      ')!'
+  );
+} else {
+  console.log('As dúas persoas teñen o mesmo IMC: (' + imc1 + ')');
+}
+
+//EJERCICIO FUNCIONES:
+//Crea unha función que reciba como parámetro un prezo e unha porcentaxe de
+// desconto. A función debe calcular o prezo final aplicado o desconto e devolver este valor.
+function descontar(prezo, desconto) {
+  let prezoDesconto = prezo - prezo * (desconto / 100);
+  console.log(
+    'El descuento es del: ' +
+      desconto +
+      '% y el precio inicial es ' +
+      prezo +
+      '$. Tiene que pagar: ' +
+      prezoDesconto +
+      '$'
+  );
+}
+let prezo1 = 20;
+let desconto1 = 10;
+descontar(prezo1, desconto1);
