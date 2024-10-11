@@ -57,7 +57,7 @@ console.log(convertirMinutos(401));
 // función que reciba o radio e devolva o perímetro do círculo. Mostra por consola o
 // resultado das funcións usando dúas cifras decimais.
 function calcularArea(radio) {
-  return (Math.PI * Math.pow(radio, 2)).toFixed(2);
+  return Math.PI * radio * radio;
 }
 function calcularPerimetro(radio) {
   return (2 * Math.PI * radio).toFixed(2);
@@ -68,7 +68,7 @@ console.log(`Perímetro: ${calcularPerimetro(radio)} m`);
 
 //EJERCICIOS DATE
 // 1. Mostra o día da semana (en letra) do 25 de xullo do ano actual.
-const fecha = new Date(new Date().getFullYear(), 6, 25);
+const fecha = new Date(new Date().getFullYear(), 6, 25); // ('2024-07-25')
 const diasSemana = [
   'domingo',
   'lunes',
@@ -83,7 +83,7 @@ console.log(diasSemana[fecha.getDay()]);
 // 2. Crea unha función á que se lle pase un mes (1-12) e un ano e devolva o número de
 // días dese mes.
 function diasDelMes(mes, año) {
-  return new Date(año, mes, 0).getDate(); // 0 en el día da el último día del mes
+  return new Date(año, mes, 0).getDate(); // 0 en el día da el último día del mes anterior
 }
 console.log(diasDelMes(2, 2024));
 
@@ -108,3 +108,41 @@ function diasPasaron(fecha) {
   return diasDiferencia;
 }
 console.log(diasPasaron(new Date()));
+
+//EJERCICIOS ARRAYS
+// 1. Crea unha función que reciba un elemento e un array como parámetros. A función
+// debe devolver un novo array que conteña os índices onde aparece ese elemento no
+// array. Exemplo:
+//    const numeros = [1, 3, 5, 1, 4, 1, 6, 8, 10, 1];
+//    function indices(elemento, arrayElementos) {…}
+//    console.log(indices(1, numeros)); // (4) [0, 3, 5, 9]
+const numeros = [1, 3, 5, 1, 4, 1, 6, 8, 10, 1];
+function indices(elemento, arrayElementos) {
+  let resultado = [];
+  for (let i = 0; i < arrayElementos.length; i++) {
+    if (arrayElementos[i] === elemento) {
+      resultado.push(i);
+    }
+  }
+  return resultado;
+}
+console.log(indices(1, numeros));
+
+// 2. Dado o array froitas (const froitas = ['peras', 'mazás', 'kiwis', 'plátanos',
+// 'mandarinas'];) , fai os seguintes apartados co método splice:
+const froitas = ['peras', 'mazás', 'kiwis', 'plátanos', 'mandarinas'];
+//      a. Elimina as mazás.
+froitas.splice(1, 1);
+console.log(froitas.join(', '));
+
+//      b. Engade laranxas e sandía detrás dos plátanos,.
+froitas.splice(3, 0, 'laranxas', 'sandía'); //se pone 0 porque no estamos eliminando nada
+console.log(froitas.join(', '));
+
+//      c. Quita os kiwis e pon no seu lugar cereixas e nésperas.
+froitas.splice(1, 1, 'cereixas', 'nesperas');
+console.log(froitas.join(', '));
+
+// 3. Crea unha función á que se lle pase unha frase con varias palabras e devolva a
+// mesma frase coa primeira letra de cada palabra en maiúsculas e o resto de letras en
+// minúsculas.
