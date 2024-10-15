@@ -136,7 +136,7 @@ froitas.splice(1, 1);
 console.log(froitas.join(', '));
 
 //      b. Engade laranxas e sandía detrás dos plátanos,.
-froitas.splice(3, 0, 'laranxas', 'sandía'); //se pone 0 porque no estamos eliminando nada
+froitas.splice(froitas.indexOf('plátanos') + 1, 0, 'laranxas', 'sandía'); //se pone 0 porque no estamos eliminando nada
 console.log(froitas.join(', '));
 
 //      c. Quita os kiwis e pon no seu lugar cereixas e nésperas.
@@ -148,26 +148,21 @@ console.log(froitas.join(', '));
 // minúsculas.
 function capitalizarFrase(frase) {
   // Dividir a frase en palabras
-  let palabras = frase.split(' ');
-  let resultado = [];
-
-  // Iterar sobre as palabras usando un bucle for
-  for (let i = 0; i < palabras.length; i++) {
-    let palabra = palabras[i];
-    // Capitalizar a primeira letra e o resto en minúsculas
-    let palabraCapitalizada =
-      palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
-    resultado.push(palabraCapitalizada);
+  let arrayPalabras = frase.split(' ');
+  let saida = [];
+  for (const palabra of arrayPalabras) {
+    saida.push(
+      palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()
+    );
   }
-
-  // Unir as palabras nunha frase de novo
-  return resultado.join(' ');
+  // Devolver a frase capitalizada unindo as palabras de novo
+  return saida.join(' ');
 }
 
 // Exemplo de uso
 let frase = 'balto es el mejor perro del mundo';
 let fraseCapitalizada = capitalizarFrase(frase);
-console.log(fraseCapitalizada);
+console.log(fraseCapitalizada); // 'Balto Es El Mejor Perro Del Mundo'
 
 // 4. Manejo de equipos de jugadores: Imagina que tienes la siguiente información sobre jugadores en un partido de fútbol:
 const players = [
@@ -215,57 +210,37 @@ console.log('Combinar jugadores de ambos equipos:');
 console.log(allPlayers);
 
 // d. Añadir jugadores al equipo 1:
-const equipo1Final = [...equipo1, 'Raquel', 'Sam', 'Vladislav'];
+const equipo1Final = [...equipo1, 'Raquel', 'Sam', 'Balto'];
 console.log('Añadir jugadores al equipo 1:');
 console.log(equipo1Final);
 
 // 5. Convertir a camelCase: Dado un array de nombres de variables con formato "snake_case", conviértelos a camelCase:
-function convertirACamelCase(nomes) {
+function convertirACamelCase(array) {
   // Creamos un array vacío 'nomesCamelCase' para almacenar los resultados convertidos a camelCase
-  let nomesCamelCase = [];
-
-  // Iteramos sobre el array 'nomes' que contiene los nombres
-  for (let i = 0; i < nomes.length; i++) {
-    // Convertimos cada nombre a minúsculas y lo asignamos a la variable 'nome'
-    let nome = nomes[i].toLowerCase();
-
-    // Usamos 'split' para separar las palabras en el nombre, suponiendo que están separadas por '_'.
-    // Desestructuramos el resultado en 'primeiraPalabra' (la primera palabra) y 'restoPalabras' (un array con el resto).
-    let [primeiraPalabra, ...restoPalabras] = nome.split('_');
-
-    // Creamos un array para guardar las palabras que formarán el nombre en camelCase, empezando con la primera palabra en minúsculas.
-    let palabrasCamelCase = [primeiraPalabra];
-
-    // Iteramos sobre las palabras restantes después de la primera
-    for (let j = 0; j < restoPalabras.length; j++) {
-      // Tomamos cada palabra en 'restoPalabras'
-      let palabra = restoPalabras[j];
-
-      // Convertimos la primera letra de la palabra a mayúscula y el resto lo mantenemos en minúsculas.
-      // Esto es lo que llamamos "capitalizar" la palabra.
-      let palabraCapitalizada =
-        palabra.charAt(0).toUpperCase() + palabra.slice(1);
-
-      // Añadimos la palabra capitalizada al array 'palabrasCamelCase'
-      palabrasCamelCase.push(palabraCapitalizada);
-    }
-
-    // Unimos todas las palabras del array 'palabrasCamelCase' en una única cadena sin espacios.
-    // Esto forma el nombre en formato camelCase.
-    let camelCase = palabrasCamelCase.join('');
-
-    // Guardamos el resultado (nombre en camelCase) en el array 'nomesCamelCase'
-    nomesCamelCase.push(camelCase);
-  }
-
-  // Mostramos en la consola cada uno de los nombres convertidos a camelCase
-  for (let i = 0; i < nomesCamelCase.length; i++) {
-    console.log(nomesCamelCase[i]);
+  for (const element of array) {
+    let [first, second] = element.toLowerCase().split('_');
+    second = second.charAt(0).toUpperCase() + second.slice(1);
+    console.log(first + second);
   }
 }
-
 // Exemplo de uso
-const nomes = ['vladislav_chernov', 'sam_putra', 'raquel_torres'];
+const nomes = ['balto_torres', 'raquel_torres'];
 convertirACamelCase(nomes);
 
 // 6. Formatear información de vuelos: Procesa la siguiente cadena de información sobre vuelos y formatea la salida en la consola.
+const flightsInfo =
+  '_Delayed_Departure;scq93766109;bio2133758440;11:25+_Arrival;bio0943384722;scq93766109;11:45+_Delayed_Arrival;svq7439299980;scq93766109;12:05+_Departure;scq93766109;svq2323639855;12:30';
+
+function getCode(str) {
+  return str.slice(0, 3).toUpperCase();
+}
+
+for (const flight of flightsInfo.split('+')) {
+  // console.log(flight);
+  const [type, from, to, time] = flight.split(';');
+  //console.log(type);
+  const output = `${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(
+    to
+  )} (${time.replace(': ', 'h')})`;
+  console.log(output.padStart(40));
+}
