@@ -244,3 +244,74 @@ for (const flight of flightsInfo.split('+')) {
   )} (${time.replace(': ', 'h')})`;
   console.log(output.padStart(40));
 }
+
+// Crea un obxecto chamado television coas propiedades marca, categoría (televisores), unidades (4), prezo (354.99) e un método chamado importe que devolva o prezo total das unidades (unidades x prezo).
+const television = {
+  marca: 'Sony',
+  categoria: 'televisores',
+  unidades: 4,
+  precio: 354.99,
+  importe() {
+    return this.unidades * this.precio;
+  },
+};
+
+console.log(television.importe()); // Devuelve el precio total (unidades * precio)
+
+//EXERCICIOS OBJETOS
+// 1. Imaxinar que se recolle a seguinte información relativa a un xogo dun servidor: const game = { odds: { team1: 1.33, x: 3.25, team2: 6.5, } }; Utilizando a desestruturación de obxectos crea as seguintes variables:
+// team1: debe inicializarse co valor da propiedade team1 do obxecto inicial.
+// draw: debe inicializarse co valor da propiedade x do obxecto inicial.
+// team2: debe inicializarse co valor da propiedade team2 do obxecto inicial.
+const game1 = {
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const { team1, x: draw, team2 } = game1.odds;
+console.log(team1, draw, team2); // 1.33, 3.25, 6.5
+
+// 2. Dado o seguinte obxecto: const game = { scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"] };
+// Recorre o array game.scored e mostra por pantalla información do xogador que marcou e o número de gol marcado. Exemplo: “Gol 1: Lewandowski”.
+// Crea un novo obxecto chamado scorers que conteña como propiedades o nome dos xogadores que marcaron e como valor o número de goles que marcaron respectivamente. Neste exemplo sería algo así: {Lewandowski: 2, Gnarby: 1, Hummels: 1}javascript
+const game = {
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+};
+// a. Recorrer el array y mostrar los goles:
+game.scored.forEach((jugador, index) => {
+  console.log(`Gol ${index + 1}: ${jugador}`);
+});
+// b. Crear el objeto `scorers`:
+const scorers = game.scored.reduce((contador, jugador) => {
+  contador[jugador] = (contador[jugador] || 0) + 1;
+  return contador;
+}, {});
+
+console.log(scorers); // { Lewandowski: 2, Gnarby: 1, Hummels: 1 }
+
+// 3. O seguinte mapa almacena información dos eventos ocorridos durante un partido indicando o minuto no que se produciron:
+const gameEvents = new Map([
+  [17, 'GOAL'],
+  [36, 'Substitution'],
+  [47, 'GOAL'],
+  [61, 'Substitution'],
+  [64, 'Yellow card'],
+  [69, 'Red card'],
+  [70, 'Substitution'],
+  [72, 'Substitution'],
+  [76, 'GOAL'],
+  [80, 'GOAL'],
+  [92, 'Yellow card'],
+]);
+// Crea un novo array chamado eventos que almacene os diferentes eventos (non o minuto) ocorridos durante o partido (sen que haxa duplicados).
+// Recorre con un bucle o mapa gameEvents e mostra información de cada evento, indicando se ocorreu na primeira metade ou na segunda metade do partido, por exemplo: [PRIMEIRA PARTE] 17: GOAL.
+const eventos = [...new Set(gameEvents.values())];
+console.log(eventos); // ['GOAL', 'Substitution', 'Yellow card', 'Red card']
+
+for (const [minuto, evento] of gameEvents) {
+  const parte = minuto <= 45 ? 'PRIMERA PARTE' : 'SEGUNDA PARTE';
+  console.log(`[${parte}] ${minuto}: ${evento}`);
+}
