@@ -86,6 +86,23 @@ console.log(comprobarDNI('87654321T'));
 // 8. Crea unha función que reciba como parámetro unha cantidade enteira e faga o
 // desglose do número de billetes e moedas necesarios para obtela. Debe usarse o
 // número mínimo de billetes e moedas.
+const billetesMonedas = (dinero) => {
+  let denominaciones = [500, 200, 100, 50, 20, 10, 5, 2, 1];
+  //objeto vacío: Las claves del objeto serán los valores de las denominaciones y los valores serán la cantidad de billetes/monedas de esa denominación
+  let resultado = {};
+
+  denominaciones.forEach((denominacion) => {
+    // se verifica si la cantidad restante es mayor o igual a la denominación actual.
+    // Si es así, significa que se pueden usar billetes o monedas de ese valor para desglosar la cantidad.
+    if (dinero >= denominacion) {
+      resultado[denominacion] = Math.floor(dinero / denominacion); // Número de billetes/monedas
+      dinero = dinero % denominacion; // Resto del dinero
+    }
+  });
+  return resultado;
+};
+
+console.log(billetesMonedas(5679));
 
 // 9. Crea unha función chamada buscarPatron(texto, patron) que reciba como
 // parámetros un texto e un patrón. A función debe devolver como resultado o número
@@ -95,6 +112,29 @@ console.log(comprobarDNI('87654321T'));
 // proporcionadas pola linguaxe JavaScript para buscar en cadeas.
 // Non se deben distinguir maiúsculas de minúsculas.
 // Exemplo: buscarPatron(“000111101000ABCHA”, “00”) debe devolver 4.
+const buscarPatron = (texto, patron) => {
+  texto = texto.toUpperCase();
+  patron = patron.toUpperCase();
+  let contador = 0;
+
+  for (let index = 0; index <= texto.length - patron.length; index++) {
+    const element = texto[index];
+    let igual = true;
+
+    for (let i = 0; i < patron.length; i++) {
+      if (texto[i + index] !== patron[i]) {
+        igual = false;
+        break;
+      }
+    }
+    if (igual) {
+      contador++;
+    }
+  }
+  return contador;
+};
+
+console.log(buscarPatron('000111101000ABCHA', '00')); // 4
 
 // 10. Crea unha función JavaScript que comprobe se é posible axendar unha reunión
 // dentro do horario laboral.
@@ -104,9 +144,27 @@ console.log(comprobarDNI('87654321T'));
 // programa non mostrará ningunha mensaxe:
 const inicioXornada = '07:30';
 const finalXornada = '17:45';
+
+function convertirAHorasMinutos(hora) {
+  const [horas, minutos] = hora.split(':').map(Number);
+  return horas * 60 + minutos;
+}
+
 function axendarReunion(horaInicioReunion, duracionEnMinutos) {
-  // A función debe devolver true se a reunión ocorre dentro da xornada laboral
-  // e false en caso contrario
+  inicioReunionMinutos = convertirAHorasMinutos(horaInicioReunion);
+  inicioXornadaMinutos = convertirAHorasMinutos(inicioXornada);
+  finalXornadaMinutos = convertirAHorasMinutos(finalXornada);
+
+  finalReunionMinutos = inicioReunionMinutos + duracionEnMinutos;
+
+  if (inicioReunionMinutos > inicioXornadaMinutos) {
+    return true;
+  }
+  if (finalReunionMinutos < finalXornadaMinutos) {
+    return true;
+  } else {
+    return false;
+  }
 }
 // Comprobacións
 console.assert(
