@@ -197,3 +197,21 @@ console.assert(
 // nas posicións onde hai minas e un 0 en caso contrario. A función debe devolver un
 // array bidimensional onde cada posición que non teña mina, debe ter a información
 // do número de minas adxacentes (diagonal, horizontal e vertica
+
+//EJERCICIOS MÉTODOS ARRAYS
+// 1. Suma los valores de la propiedad price del siguiente array de objetos:
+const objects = [{ price: 1 }, { price: 2 }, { price: 3 }];
+
+const total = objects.reduce(
+  (accumulator, currentObject) => accumulator + currentObject.price,
+  0
+); // El 0 es el valor inicial del acumulador
+
+console.log(total);
+
+// 2. Utilizando la función reduce, obtén el valor mínimo de un array de números.
+// const numeros = [4, 5, 2001, 23];
+// const valorMinimo = numeros.reduce((accumulator, currentObject) =>
+//   Math.min(accumulator + currentObject)
+// );
+// console.log(valorMinimo);
