@@ -151,16 +151,17 @@ function convertirAHorasMinutos(hora) {
 }
 
 function axendarReunion(horaInicioReunion, duracionEnMinutos) {
-  inicioReunionMinutos = convertirAHorasMinutos(horaInicioReunion);
-  inicioXornadaMinutos = convertirAHorasMinutos(inicioXornada);
-  finalXornadaMinutos = convertirAHorasMinutos(finalXornada);
+  const inicioReunionMinutos = convertirAHorasMinutos(horaInicioReunion);
+  const inicioXornadaMinutos = convertirAHorasMinutos(inicioXornada);
+  const finalXornadaMinutos = convertirAHorasMinutos(finalXornada);
 
-  finalReunionMinutos = inicioReunionMinutos + duracionEnMinutos;
+  const finalReunionMinutos = inicioReunionMinutos + duracionEnMinutos;
 
-  if (inicioReunionMinutos > inicioXornadaMinutos) {
-    return true;
-  }
-  if (finalReunionMinutos < finalXornadaMinutos) {
+  // Comprobar que la reunión comienza dentro del horario laboral y termina antes de la hora de cierre
+  if (
+    inicioReunionMinutos >= inicioXornadaMinutos &&
+    finalReunionMinutos <= finalXornadaMinutos
+  ) {
     return true;
   } else {
     return false;
@@ -375,12 +376,46 @@ const inventores = [
   { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 },
 ];
 //    a. Filtra el array de inventores y crea un array solo con los inventores que nacieron en el siglo XVI.
+const inventoresSigloXVI = inventores.filter(
+  (inventor) => inventor.year >= 1501 && inventor.year <= 1600
+);
+console.log(inventoresSigloXVI);
 //    b. Crea un array con el nombre completo de los inventores. Por ejemplo: ["Albert Einstein", "Isaac Newton", ...].
+const nombresCompletos = inventores.map(
+  (inventor) => `${inventor.first} ${inventor.last}`
+);
+console.log(nombresCompletos);
 //    c. Una vez obtenido el array con el nombre completo de los inventores del ejercicio anterior, ordénalo alfabéticamente por el apellido.
+const nombresOrdenados = nombresCompletos.sort((a, b) => {
+  const apellidoA = a.split(' ')[1];
+  const apellidoB = b.split(' ')[1];
+  return apellidoA.localeCompare(apellidoB);
+});
+console.log(nombresOrdenados);
 //    d. Ordena alfabéticamente por el apellido el array de objetos inventores inicial.
+const inventoresOrdenadosApellido = inventores.sort((a, b) => {
+  return a.last.localeCompare(b.last);
+});
+console.log(inventoresOrdenadosApellido);
 //    e. Ordena el array de inventores por la fecha de nacimiento.
+const inventoresOrdenadosNacimiento = inventores.sort(
+  (a, b) => a.year - b.year
+);
+console.log(inventoresOrdenadosNacimiento);
 //    f. Calcula la suma de los años que vivieron todos los inventores.
+const totalAniosVividos = inventores.reduce((acc, inventor) => {
+  return acc + (inventor.passed - inventor.year);
+}, 0);
+console.log(
+  `Total de años vividos por todos los inventores: ${totalAniosVividos}`
+);
 //    g. Ordena los inventores por los años que vivieron, primero el más longevo.
+const inventoresOrdenadosLongevidad = inventores.sort((a, b) => {
+  const aniosVividosA = a.passed - a.year;
+  const aniosVividosB = b.passed - b.year;
+  return aniosVividosB - aniosVividosA;
+});
+console.log(inventoresOrdenadosLongevidad);
 
 // 6. Dada la siguiente información, obtén un objeto con una propiedad para cada medio de transporte, indicando el número de veces que se repite en el array.
 //Es decir, el resultado debería ser { car: 5, truck: 3, bike: 2, walk: 2, van: 2, pogostick: 1 }.
@@ -402,3 +437,9 @@ const data = [
   'truck',
   'pogostick',
 ];
+const transporteContador = data.reduce((acc, medio) => {
+  acc[medio] = (acc[medio] || 0) + 1;
+  return acc;
+}, {});
+
+console.log(transporteContador);
