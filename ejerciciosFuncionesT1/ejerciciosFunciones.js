@@ -443,3 +443,127 @@ const transporteContador = data.reduce((acc, medio) => {
 }, {});
 
 console.log(transporteContador);
+
+// 7. Escribe una expresión regular para comprobar que cada uno de los siguientes elementos aparece en una cadena:
+//        car y cat.
+//        pop y prop.
+//        ferret, ferry y ferrari.
+//        Cualquier palabra que termine en ious.
+//        Un espacio seguido de un punto, coma, dos puntos o punto y coma.
+//        Una palabra con más de 6 letras.
+//        Una palabra que no contenga la letra e (o E).
+// Una vez tengas la expresión regular creada, comprueba si se puede simplificar.
+// Utiliza el siguiente código para comprobar el resultado, colocando como primer parámetro de la función verify tu expresión regular:
+function verify(regexp, yes, no) {
+  // Ignorar ejercicios sin terminar
+  if (regexp.source == '...') return;
+  for (let str of yes)
+    if (!regexp.test(str)) {
+      console.log(`Failure to match '${str}'`);
+    }
+  for (let str of no)
+    if (regexp.test(str)) {
+      console.log(`Unexpected match for '${str}'`);
+    }
+}
+
+verify(/ca[tr]/, ['my car', 'bad cats'], ['camper', 'high art']);
+verify(/pr?op/, ['pop culture', 'mad props'], ['plop', 'prrrop']);
+verify(
+  /ferr(?:et|y|ari)/,
+  ['ferret', 'ferry', 'ferrari'],
+  ['ferrum', 'transfer A']
+);
+verify(
+  /\Bious\b/,
+  ['how delicious', 'spacious room'],
+  ['ruinous', 'consciousness']
+); //las \b eran para límite de palabra
+//las \B eran para NO límite de palabra
+verify(/\s[.,:;]/, ['bad punctuation .'], ['escape the period']);
+verify(
+  /\b\w{7,}\b/,
+  ['Siebentausenddreihundertzweiundzwanzig'],
+  ['no', 'three small words']
+);
+verify(
+  /\b[^eE\s+]\b/,
+  ['red platypus', 'wobbling nest'],
+  ['earth bed', 'learning ape', 'BEET']
+);
+
+// 8. Una dirección de red MAC está compuesta por 6 grupos de dos números hexadecimales separados por  “:”. Por ejemplo, "01:32:54:67:89:AB".
+// Escribe una expresión regular que verifique si una dirección MAC es correcta.
+let macExpression = /^([0 - 9a-f] { 2 })(:[0 - 9a-f] { 2 }){½}$/i;
+console.log(macExpression.test('01:32:54:67:89:AB'));
+
+// 9. Crea una función que compruebe si una contraseña es válida, es decir, cumple con las siguientes condiciones:
+//      Mínimo 8 caracteres.
+//      Sin espacios en blanco.
+//      Que contenga al menos 3 de los siguientes tipos de caracteres:
+//           Mayúsculas.
+//           Minúsculas.
+//           Números.
+//           Caracteres especiales: ¡!$?%&#@/\()=¿?*[];,:._<>+-.
+function esContrasenaValida(contrasena) {
+  // Comprobar longitud mínima
+  if (contrasena.length < 8) {
+    return false;
+  }
+  // Comprobar que no contiene espacios
+  if (/\s/.test(contrasena)) {
+    return false;
+  }
+  // Definir expresiones regulares para los diferentes tipos de caracteres
+  const mayusculas = /[A-Z]/;
+  const minusculas = /[a-z]/;
+  const numeros = /[0-9]/;
+  const especiales = /[!¡$?%&#@/\\()=¿?*[\];,:._<>+-.]/;
+  // Contar los tipos de caracteres presentes en la contraseña
+  let tiposPresentes = 0;
+  if (mayusculas.test(contrasena)) tiposPresentes++;
+  if (minusculas.test(contrasena)) tiposPresentes++;
+  if (numeros.test(contrasena)) tiposPresentes++;
+  if (especiales.test(contrasena)) tiposPresentes++;
+  // Comprobar que al menos 3 tipos de caracteres están presentes
+  return tiposPresentes >= 3;
+}
+// Ejemplos de uso
+console.log(esContrasenaValida('ContraSegura123!')); // true
+console.log(esContrasenaValida('12345678')); // false (solo tiene números)
+console.log(esContrasenaValida('Contraseña')); // false (solo tiene mayúsculas y minúsculas)
+console.log(esContrasenaValida('Con1!')); // false (menos de 8 caracteres)
+
+// 10. A veces es útil eliminar las etiquetas HTML de un texto para evitar que se incluya código malicioso en una página web.
+// Crea una función a la que se le pase un texto y devuelva el mismo texto con las etiquetas HTML eliminadas.
+function eliminarEtiquetas(cadea) {
+  let etiquetaRegExp = /<.*?>/gi;
+  return cadea.replace(etiquetaRegExp, '');
+}
+// Ejemplo de uso
+let textoConHTML =
+  '<p>Este es un <strong>texto</strong> con <em>etiquetas</em> HTML.</p>';
+let textoSinHTML = eliminarEtiquetas(textoConHTML);
+console.log(textoSinHTML);
+
+// 11. Dado el siguiente array de insultos, crea un script que reemplace cada insulto que aparezca en un texto por la primera letra del insulto seguida de un número de asteriscos igual a la longitud del insulto menos 1:
+let insultos = [
+  'testán',
+  'langrán',
+  'fervellasverzas',
+  'baldreo',
+  'lacazán',
+  'pillabán',
+];
+// Por ejemplo, cada vez que aparezca "testán" en un texto, debe reemplazarse por "t*****".
+let strPatronInsultos = insultos.join('|');
+var patronInsultos = new RegExp(strPatronInsultos, 'gi');
+function sustituirInsulto(match) {
+  return match.substring(0, 1) + '*'.repeat(match.length - 1);
+}
+// Texto de entrada
+var textoInsultos =
+  'Ese testán y pillabán no hace más que comportarse como un fervellasverzas y un baldreo.';
+// Reemplazar los insultos en el texto
+var textoSalida = textoInsultos.replace(patronInsultos, sustituirInsulto);
+console.log(textoSalida);
