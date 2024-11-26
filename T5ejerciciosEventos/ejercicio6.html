@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 6</title>
+  </head>
+  <body>
+    <button type="button" id="ocultar">
+      Fai clic para que desapareza o texto</button
+    ><br /><br />
+    <input type="text" id="textoExercicio1" name="texto" /><br /><br />
+    <div id="texto">Texto</div>
+    <script>
+      const boton = document.getElementById('ocultar');
+      const textoDiv = document.getElementById('texto');
+      const inputTexto = document.getElementById('textoExercicio1');
+      // Evento: Mostrar mensajes al mover el ratón sobre el botón
+      boton.addEventListener('mouseenter', () => {
+        console.log('Cursor entró en el botón.');
+      });
+      boton.addEventListener('mouseleave', () => {
+        console.log('Cursor salió del botón.');
+      });
+      // Evento: Ocultar el div al pulsar el botón
+      boton.addEventListener('click', () => {
+        textoDiv.style.display = 'none';
+      });
+      // Evento: Mostrar información al escribir en el campo de texto
+      inputTexto.addEventListener('keydown', (e) => {
+        // Mostrar el div si estaba oculto
+        if (textoDiv.style.display === 'none') {
+          textoDiv.style.display = 'block';
+        }
+        // Mostrar la tecla y el código
+        textoDiv.textContent = `Tecla: '${e.key}', Código: '${e.code}'`;
+      });
+    </script>
+  </body>
+</html>

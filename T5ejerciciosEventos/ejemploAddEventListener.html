@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplo addEventListener</title>
+  </head>
+  <body>
+    <button>Cambiar color</button>
+    <script>
+      const btn = document.querySelector('button');
+      function random(numero) {
+        return Math.floor(Math.random() * (numero + 1));
+      }
+      btn.addEventListener('click', () => {
+        const colorAleatorio = `rgb(${random(255)}, ${random(255)}, ${random(
+          255
+        )})`;
+        document.body.style.backgroundColor = colorAleatorio;
+      });
+    </script>
+  </body>
+</html>

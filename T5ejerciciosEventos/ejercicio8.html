@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <ul class="tree" id="tree">
+      <li>
+        Animals
+        <ul>
+          <li>
+            Mammals
+            <ul>
+              <li>Cows</li>
+              <li>Donkeys</li>
+              <li>Dogs</li>
+              <li>Tigers</li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>Snakes</li>
+              <li>Birds</li>
+              <li>Lizards</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Fishes
+        <ul>
+          <li>
+            Aquarium
+            <ul>
+              <li>Guppy</li>
+              <li>Angelfish</li>
+            </ul>
+          </li>
+          <li>
+            Sea
+            <ul>
+              <li>Sea trout</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tree = document.getElementById('tree');
+
+      // Delegación del evento para manejar clicks en el árbol
+      tree.addEventListener('click', (event) => {
+        // Verificar que el clic fue sobre un nodo de texto (el título)
+        const clickedElement = event.target;
+
+        // Asegurarse de que el clic sea en un nodo LI (el título) y no en el espacio vacío
+        if (clickedElement.tagName === 'LI') {
+          // Alternar la visibilidad de los nodos hijos
+          const childNodes = clickedElement.querySelector('ul');
+          if (childNodes) {
+            childNodes.style.display =
+              childNodes.style.display === 'none' ? 'block' : 'none';
+          }
+        }
+      });
+
+      // Inicialmente ocultar todos los sub-árboles
+      const subTrees = tree.querySelectorAll('ul');
+      subTrees.forEach((subTree) => {
+        subTree.style.display = 'none';
+      });
+    });
+  </script>
+</html>

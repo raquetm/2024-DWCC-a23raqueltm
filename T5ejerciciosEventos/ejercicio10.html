@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #contents {
+        padding: 5px;
+        border: 1px green solid;
+      }
+    </style>
+  </head>
+
+  <body>
+    <fieldset id="contents">
+      <legend>#contents</legend>
+      <p>
+        ¿Que tal si leemos <a href="https://wikipedia.org">Wikipedia</a> o
+        visitamos <a href="https://w3.org"><i>W3.org</i></a> y aprendemos sobre
+        los estándares modernos?
+      </p>
+    </fieldset>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contents = document.getElementById('contents');
+
+      // Delegación de eventos en el contenedor con id "contents"
+      contents.addEventListener('click', (event) => {
+        // Verificar si el clic fue en un enlace o dentro de un enlace
+        const link = event.target.closest('a');
+        if (!link) return; // Si no es un enlace, no hacemos nada
+
+        // Pedir confirmación antes de redirigir
+        const confirmation = confirm(
+          `¿Estás seguro de que quieres ir a ${link.href}?`
+        );
+        if (!confirmation) {
+          event.preventDefault(); // Evitar la navegación si se cancela
+        }
+      });
+    });
+  </script>
+</html>

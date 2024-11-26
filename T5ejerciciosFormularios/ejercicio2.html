@@ -1,0 +1,46 @@
+<!-- 2. Crea una página con un formulario que contenga varios campos (input, select, radiobutton, checkbox, área de texto). 
+Escribe el código JavaScript necesario para mostrar en la consola los valores de todos los campos del formulario al enviarlo. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 2</title>
+  </head>
+  <body>
+    <form id="formulario">
+      <input type="text" name="nombre" placeholder="Nombre" />
+      <br />
+      <textarea
+        name="comentarios"
+        placeholder="Escribe un comentario..."
+      ></textarea>
+      <br />
+      <input type="radio" name="genero" value="Masculino" /> Masculino
+      <input type="radio" name="genero" value="Femenino" /> Femenino
+      <br />
+      <input type="checkbox" name="suscripcion" value="Acepto" /> Acepto recibir
+      noticias
+      <br />
+      <select name="pais">
+        <option value="es">España</option>
+        <option value="mx">México</option>
+        <option value="ar">Argentina</option>
+      </select>
+      <br />
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+  <script>
+    const formulario = document.getElementById('formulario');
+
+    formulario.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evitar el envío real del formulario.
+      const formData = new FormData(formulario);
+
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
+    });
+  </script>
+</html>

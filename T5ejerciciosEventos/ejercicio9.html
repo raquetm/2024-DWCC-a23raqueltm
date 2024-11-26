@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 4px;
+      }
+      th {
+        cursor: pointer;
+      }
+      th:hover {
+        background: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Age</th>
+          <th data-type="string">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>John</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Pete</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Ann</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Eugene</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Ilya</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const table = document.getElementById('grid');
+
+        table.addEventListener('click', (event) => {
+          const target = event.target;
+
+          // Verifica si el clic fue en un <th>
+          if (target.tagName !== 'TH') return;
+
+          const columnIndex = target.cellIndex; // Índice de la columna
+          const dataType = target.dataset.type; // Tipo de datos
+
+          // Obtiene las filas del cuerpo de la tabla
+          const tbody = table.querySelector('tbody');
+          const rows = Array.from(tbody.rows);
+
+          // Ordena las filas según el tipo de datos
+          const compare = (rowA, rowB) => {
+            const cellA = rowA.cells[columnIndex].textContent.trim();
+            const cellB = rowB.cells[columnIndex].textContent.trim();
+
+            if (dataType === 'number') {
+              return Number(cellA) - Number(cellB);
+            } else if (dataType === 'string') {
+              return cellA.localeCompare(cellB);
+            }
+          };
+
+          // Ordena las filas
+          rows.sort(compare);
+
+          // Inserta las filas ordenadas en el tbody
+          rows.forEach((row) => tbody.appendChild(row));
+        });
+      });
+    </script>
+  </body>
+</html>

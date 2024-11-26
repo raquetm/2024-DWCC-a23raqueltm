@@ -1,0 +1,30 @@
+<!-- 1. Crea una página con un formulario que contenga una caja de texto. Implementa las siguientes funcionalidades:
+            Cuando la caja de texto tenga el foco, el borde debe volverse verde.
+            Cuando pierda el foco, debe regresar al estilo predeterminado.
+            Si la caja de texto está vacía al perder el foco, debe escribir un mensaje en la consola informando de esta situación. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="text-box" placeholder="add text here" />
+    </form>
+  </body>
+  <script>
+    const textBox = document.getElementById('text-box');
+    textBox.addEventListener('focus', () => {
+      textBox.style.border = '2px solid green';
+      textBox.style.outline = 'none';
+    });
+    textBox.addEventListener('blur', () => {
+      textBox.style.border = '';
+      if (textBox.value.trim() === '') {
+        console.log('La caja de texto está vacía.');
+      }
+    });
+  </script>
+</html>
