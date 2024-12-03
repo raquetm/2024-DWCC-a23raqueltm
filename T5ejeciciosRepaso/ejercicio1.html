@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redimensionar Div</title>
+    <style>
+      #container {
+        width: 100px;
+        height: 100px;
+        background-color: #f1a7c3; /* Cor de fondo inicial */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div>
+      <label for="widthInput">Ancho (0-1000):</label>
+      <input type="number" id="widthInput" min="0" max="1000" value="100" />
+      <br />
+      <label for="heightInput">Alto (0-1000):</label>
+      <input type="number" id="heightInput" min="0" max="1000" value="100" />
+    </div>
+
+    <script>
+      const container = document.getElementById('container');
+      const widthInput = document.getElementById('widthInput');
+      const heightInput = document.getElementById('heightInput');
+
+      function updateSize() {
+        // Obter os valores dos campos numéricos
+        const width = widthInput.value;
+        const height = heightInput.value;
+
+        // Modificar o tamaño do div
+        container.style.width = `${width}px`;
+        container.style.height = `${height}px`;
+      }
+
+      widthInput.addEventListener('input', updateSize);
+      heightInput.addEventListener('input', updateSize);
+    </script>
+  </body>
+</html>
