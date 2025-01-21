@@ -13,19 +13,43 @@
 // necesidade de recargar a páxina web.
 
 const form = document.getElementById('form');
-const userID = document.getElementById('userID');
-const output = document.getElementById('output');
+const userIDInput = document.getElementById('userID');
+const postsTableBody = document
+  .getElementById('postsTable')
+  .getElementsByTagName('tbody')[0]; // Definimos postsTableBody correctamente
 
-function createPost(userID) {
-  let options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  fetch('https://jsonplaceholder.typicode.com/posts?userId=${userID}', options)
-    .then((response) => response.json())
-    .then((data) => {
-      output;
+function cargarPosts(userId) {
+  fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((posts) => {
+      mostrarPosts(posts);
     });
 }
+
+function mostrarPosts(posts) {
+  postsTableBody.innerHTML = '';
+
+  if (posts.length === 0) {
+    postsTableBody.innerHTML =
+      '<tr><td colspan="3">No se encontraron posts para este usuario.</td></tr>';
+    return;
+  }
+
+  // Añadir las filas a la tabla
+  posts.forEach((post) => {
+    const row = postsTableBody.insertRow();
+    row.innerHTML = `
+            <td>${post.id}</td>
+            <td>${post.title}</td>
+            <td>${post.body}</td>
+          `;
+  });
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userId = parseInt(userIDInput.value, 10);
+  cargarPosts(userId);
+});
