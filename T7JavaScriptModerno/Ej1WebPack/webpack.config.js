@@ -12,6 +12,7 @@ module.exports = {
       patterns: [
         { from: 'src/html', to: './', force: true },
         { from: 'src/css', to: './', force: true },
+        { from: 'src/img', to: './img', force: true },
       ],
     }),
   ],
