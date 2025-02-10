@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sincronización de Texto con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script type="module" src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Message is: {{ message }}</p>
+      <input v-model="message" placeholder="edit me" />
+      <br />
+      <br />
+      <br />
+
+      <span>Multiline message is:</span>
+      <p style="white-space: pre-line">{{ multilineMessage }}</p>
+      <textarea
+        v-model="multilineMessage"
+        placeholder="add multiple lines"
+      ></textarea>
+      <br />
+      <br />
+      <br />
+
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+      <br />
+      <br />
+      <br />
+
+      <div>Picked: {{ picked }}</div>
+      <input type="radio" id="one" value="One" v-model="picked" />
+      <label for="one">One</label>
+      <input type="radio" id="two" value="Two" v-model="picked" />
+      <label for="two">Two</label>
+      <br />
+      <br />
+      <br />
+
+      <div>Selected: {{ selected }}</div>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script type="module" src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ nombre }}</p>
+      <p>{{ fecha }}</p>
+      <p>{{ fecha +5 }}</p>
+
+      <img :src="imagen" alt="gatito" width="300" /><br />
+      <input type="text" :value="nombre" />
+      <p>{{ count }}</p>
+      <button @click="increment">Incrementar</button>
+      <button @click="decrement">Diminuír</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sincronización de Texto con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script type="module" src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <button @click.middle="botonMedio">Click con el botón del medio!</button>
+      <br /><br />
+      <input type="text" @keyup="creandoTexto($event)" />
+      <p>{{ texto }}</p>
+      <input type="text" @keyup.enter="crearNuevoParrafo($event)" />
+      <p>{{ nuevoParrafo }}</p>
+    </div>
+  </body>
+</html>
