@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <p
+        :class="classObjectPrimeiro"
+        @click="primeiroParagrafoActivo = !primeiroParagrafoActivo"
+      >
+        Este é o primeiro parágrafo ദ്ദി(˵•̀ ᴗ -˵)✧
+      </p>
+      <p :class="classObjectSegundo" @click="verde = !verde">
+        Este é o segundo parágrafo ⸜(｡˃ ᵕ ˂ )⸝♡
+      </p>
+    </div>
+  </body>
+</html>

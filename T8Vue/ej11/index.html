@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Conversor de medidas (kilómetros-metros)</h2>
+        <label>Kilómetros:</label>
+        <input type="number" v-model.number="kilometros"><br>
+        <label>Metros:</label>
+        <input type="number" v-model.number="metros">
+    </div>
+</body>
+</html>

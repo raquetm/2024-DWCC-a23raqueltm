@@ -11,8 +11,19 @@ createApp({
     return {
       message: '',
       multilineMessage: '',
-      checked: true,
+      checked: [], 
+      picked: '', 
       selected: '',
     };
   },
+  methods: {
+    resetForm() {
+      this.message = '';
+      this.multilineMessage = '';
+      this.checked = [];
+      this.picked = '';
+      this.selected = '';
+    },
+  },
 }).mount('#app');
+

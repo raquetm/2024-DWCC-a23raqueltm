@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Suma de dous números</h2>
+        <input type="number" v-model.number="num1">
+        <input type="number" v-model.number="num2">
+        <p>Resultado: {{ suma }}. O número é {{ parOuImpar }}</p>
+    </div>
+</body>
+</html>
