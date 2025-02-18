@@ -1,5 +1,4 @@
 // Crea unha páxina web coas seguintes condicións:
-
 //      a. Define dúas clases CSS (claseA e claseB) cos estilos que queiras para
 //      aplicar a un parágrafo.
 
@@ -14,7 +13,7 @@
 //          }
 //          .visible {
 //              display: block;
-//          }
+//          } 
 
 //      d. Engade un botón á páxina de tal forma que, usando as clases anteriores,
 //      alterne a visibilidade do parágrafo usado anteriormente. É dicir, inicialmente o
@@ -24,24 +23,24 @@
 //      e. Engade á páxina web unha nova caixa de texto e un novo parágrafo. Usando
 //      estilos en liña, fai que cando unha persoa escriba unha cor de fondo na caixa
 //      de texto, o parágrafo cambie a súa cor de fondo pola indicada na caixa de texto.
-
 const { createApp } = Vue;
 
 createApp({
-    data() {
-        return {
-            kilometros: 0,
-            metros: 0,
-        };
+  data() {
+    return {
+      inputClass:'',
+    };
+  },
+  computed: {
+    classObjectActiva1() {
+      return {
+        activa: this.activa1,
+      };
     },
-    watch: {
-        kilometros() {
-            this.metros=this.kilometros*1000
-        },
-            
-        metros(){
-            this.kilometros=this.metros/1000
-
-        }
+    classObjectActiva2() {
+      return {
+        activa: this.activa2,
+      };
     },
+  },
 }).mount('#app');

@@ -13,22 +13,20 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      primeiroParagrafoActivo: true,
-      verde: true,
+      activa1: false,
+      activa2: false,
     };
   },
   computed: {
-    classObjectPrimeiro() {
+    classObjectActiva1() {
       return {
-        primeiroParagrafoActivo: this.primeiroParagrafoActivo,
+        activa: this.activa1,
       };
     },
-    classObjectSegundo() {
+    classObjectActiva2() {
       return {
-        verde: this.verde,
-        vermello: !this.verde,
+        activa: this.activa2,
       };
     },
   },
-  methods: {},
 }).mount('#app');

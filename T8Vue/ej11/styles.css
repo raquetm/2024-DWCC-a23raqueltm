@@ -1,0 +1,21 @@
+P{
+    font-size: 18px;
+
+}
+.claseA{
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+.claseB{
+  font-size: 14px;
+  background-color: rgb(255, 201, 255);
+  color: black;
+}
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+} 

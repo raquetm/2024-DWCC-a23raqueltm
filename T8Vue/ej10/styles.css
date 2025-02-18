@@ -1,18 +1,18 @@
-.primeiroParagrafoActivo {
-  font-weight: bold;
-  font-size: 18px;
-  color: rgb(77, 9, 68);
-  cursor: pointer;
+table {
+  border-collapse: collapse;
+  width: 50%;
 }
-.verde {
-  font-weight: bold;
-  font-size: 18px;
-  color: rgb(100, 163, 128);
+
+td {
+  padding: 20px;
+  text-align: center;
+  border: 2px solid black;
   cursor: pointer;
+  font-size: 1.2em;
 }
-.vermello {
-  font-weight: bold;
-  font-size: 18px;
-  color: rgb(173, 7, 7);
-  cursor: pointer;
+
+.activa {
+  color: white;
+  background-color: rgb(31, 0, 27);
+  border: 2px dotted pink;
 }

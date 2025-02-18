@@ -3,22 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conversor con Vue</title>
+    <title>Taboleiro con Vue</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="app">
-      <p
-        :class="classObjectPrimeiro"
-        @click="primeiroParagrafoActivo = !primeiroParagrafoActivo"
-      >
-        Este é o primeiro parágrafo ദ്ദി(˵•̀ ᴗ -˵)✧
-      </p>
-      <p :class="classObjectSegundo" @click="verde = !verde">
-        Este é o segundo parágrafo ⸜(｡˃ ᵕ ˂ )⸝♡
-      </p>
+      <h1>Taboleiro con Vue</h1>
+      <table>
+        <tr>
+          <td :class="classObjectActiva1" @click="activa1 = !activa1">Cela 1 ദ്ദി(˵•̀ ᴗ -˵)✧</td>
+          <td :class="classObjectActiva2" @click="activa2 = !activa2">Cela 2 ⸜(｡˃ ᵕ ˂ )⸝♡</td>
+        </tr>
+      </table>
     </div>
   </body>
 </html>
