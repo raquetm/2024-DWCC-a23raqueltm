@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pares con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <p>Números pares:</p>
+      <ul>
+        <li v-for="numero in numerosPares" :key="numero">{{ numero }}</li>
+      </ul>
+    </div>
+  </body>
+</html>

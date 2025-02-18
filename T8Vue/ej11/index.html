@@ -11,8 +11,11 @@
   <body>
     <div id="app">
       <input type="text" v-model="inputClass" placeholder="Escribe claseA ou claseB" ><br>
-      <p :class="inputClass">Podo cambiar o meu estilo! (๑> ᴗ <๑)♡</p>
-      
+      <p :class="[inputClass, visible ? 'visible' : 'hidden']">Podo cambiar o meu estilo! (๑> ᴗ <๑)♡</p>
+      <button @click="ocultaParrafo">Ocultar o parágrafo</button><br><br><br><br>
+      <input type="text" v-model="backgroundColor" placeholder="Escribe unha cor de fondo" ><br>
+      <p :style="{ backgroundColor: backgroundColor }">Podo cambiar a miña cor de fondo! (๑> ᴗ <๑)♡</p><br>
+
     </div>
   </body>
 </html>

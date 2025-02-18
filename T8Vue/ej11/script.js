@@ -28,19 +28,26 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      inputClass:'',
+      inputClass: '',
+      visible: true,
+      backgroundColor: '', 
     };
   },
   computed: {
-    classObjectActiva1() {
+    parrafoClase() {
       return {
-        activa: this.activa1,
+        claseA: this.inputClass === 'claseA',
+        claseB: this.inputClass === 'claseB',
       };
     },
-    classObjectActiva2() {
-      return {
-        activa: this.activa2,
-      };
+    parrafoVisible() {
+      return this.visible ? 'visible' : 'hidden';
+    },
+  },
+  methods: {
+    ocultaParrafo() {
+      this.visible = !this.visible;
+      
     },
   },
 }).mount('#app');

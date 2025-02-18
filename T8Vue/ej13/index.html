@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="gl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cans con Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <p><b>Nomes de cans υ'• ﻌ •`υ </b></p>
+      <button @click="toggleList">{{ mostrarLista ? 'Ocultar canciños' : 'Mostrar canciños' }}</button>
+      <ul v-if="mostrarLista">
+        <li v-for="(nombrePerro, index) in nombres" :key="index">
+          {{ nombrePerro }}
+          <button @click="deleteName(index)">Borrar </button>
+        </li>
+      </ul>  
+      <input type="text" v-model="nuevoNombre" placeholder="Escribe un novo nome 🐾" />
+      <button @click="addName">Engadir</button>  
+    </div>
+  </body>
+</html>
