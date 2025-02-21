@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batalla</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Batalla</h1>
+  </header>
+  <div id="game">
+    <section id="monster" class="container">
+      <h2>Monstro</h2>
+      <div class="healthbar">
+        <div class="healthbar__value" :style="monsterHealthStyle"></div>
+      </div>
+    </section>
+    <section id="player" class="container">
+      <h2>Vostede</h2>
+      <div class="healthbar">
+        <div class="healthbar__value" :style="playerHealthStyle" ></div>
+      </div>
+    </section>
+    <section class="container" v-if="gameOver">
+      <h2>Fin partida!</h2>
+      <div v-if="winner==='monster'">
+        <h3>Perdiches!</h3>
+        <img src="baltoGameOver.png" width="150px"/>
+      </div>
+      <div v-if="winner==='player'">
+        <h3>Gañaches!</h3>
+        <img src="baltoJumps.png" width="150px"/>
+      </div>
+      <h3 v-if="winner==='draw'">Empate</h3>
+      <button @click="newGame">Novo xogo</button>
+    </section>
+    <section id="controls" v-else>
+      <button @click="attack">ATAQUE</button>
+      <button @click="specialAttack" :disabled="specialAttackDisabled">ATAQUE ESPECIAL</button>
+      <button @click="heal">CURACIÓN</button>
+      <button @click="surrender">RENDERSE</button>
+    </section>
+    <section id="log" class="container">
+      <h2>Rexistro da batalla</h2>
+      <ul>
+        <li v-for="log in logs" :class="'log--' + log.who + ' log--' + log.what">
+          {{ log.who }} {{ log.what }} {{ log.value }}
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+
+</html>
