@@ -2,8 +2,8 @@
 export default {
   data() {
     return {
-      name: 'Apples',
-      message: 'I like apples',
+      name: 'Mazás',
+      message: 'Gústanme as mazás',
     };
   },
 };
